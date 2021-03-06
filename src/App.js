@@ -1,10 +1,13 @@
-import Content from "./components/Container";
+import React from "react";
+
 import "./Global.css";
+
+import Container from "./components/Container";
 
 function App() {
   return (
     <div className="App">
-      <Content />
+      <Container />
     </div>
   );
 }

@@ -1,56 +1,64 @@
+import React, { useState } from "react";
 import styled from "styled-components";
-import { FiCalendar, FiPlus } from "react-icons/fi";
+import { FiCalendar } from "react-icons/fi";
 import { VscChromeClose } from "react-icons/vsc";
+import { Modal } from "./Modal";
+// import { FiPlus } from "react-icons/fi";
 
 export default function Container() {
+  const [isModalVisible, setModalVisible] = useState(false);
   return (
-    <>
-      <Content>
-        <header>
-          <small>Created by</small>
-          <strong>John Doe</strong>
-        </header>
-        <h1>Keep productivity with DoList </h1>
-        <h2>Tasks </h2>
-        <ul>
-          <li>To-do</li>
-          <li>All</li>
-          <li>Done</li>
-        </ul>
-        <Main>
-          <div className="menuLeft">
-            <h1> </h1>
-            <p>
-              <p>Do Homework</p>
-            </p>
-          </div>
+    <Content>
+      <header>
+        <small>Created by</small>
+        <strong>José Caldas</strong>
+      </header>
+      <h1>Keep productivity with DoList </h1>
+      <h2>Tasks </h2>
+      <ul>
+        <li>To-do</li>
+        <li>All</li>
+        <li>Done</li>
+      </ul>
+      <Main>
+        <div className="menuLeft">
+          <h1> </h1>
+          <p>
+            <p>Do Homework</p>
+          </p>
+        </div>
 
-          <div className="menuRight">
-            <h3>12/13 às 12:30</h3>
-            <FiCalendar />
-            <span>
-              <VscChromeClose />
-            </span>
-          </div>
-        </Main>
-        <footer>
-          <div>
-            {" "}
-            <FiPlus />
-          </div>
-        </footer>
-      </Content>
-    </>
+        <div className="menuRight">
+          <h3>12/13 às 12:30</h3>
+          <FiCalendar />
+          <span>
+            <VscChromeClose />
+          </span>
+        </div>
+      </Main>
+      <Button>
+        <button onClick={() => setModalVisible(true)}>+</button>
+      </Button>
+      {isModalVisible ? (
+        <Modal onClose={() => setModalVisible(false)}>
+          <h1>Write down your goal</h1>
+        </Modal>
+      ) : null}
+    </Content>
   );
 }
 
 const Content = styled.div`
   width: 800px;
   display: flex;
+  height: 600px;
   flex-direction: column;
   margin: 60px auto;
+  justify-content: space-around;
+
   header small {
     color: var(--gray100);
+    font-size: 18px;
   }
   header strong {
     width: 240px;
@@ -58,7 +66,7 @@ const Content = styled.div`
     border-radius: 34px;
     padding: 10px 60px;
     margin-left: 20px;
-    font-size: 12px;
+    font-size: 18px;
     color: var(--gray);
   }
   h1 {
@@ -84,25 +92,6 @@ const Content = styled.div`
     color: var(--blue);
     font-weight: bold;
     border-bottom: 2px solid var(--blue);
-  }
-
-  footer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  footer div {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--blue);
-  }
-  footer svg {
-    color: white;
-    font-size: 30px;
   }
 `;
 
@@ -147,5 +136,29 @@ const Main = styled.div`
 
   .menuRight span svg {
     color: red;
+  }
+`;
+
+const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+
+  button {
+    background: var(--blue);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
