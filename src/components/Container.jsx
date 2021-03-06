@@ -8,67 +8,80 @@ import TodoList from "./TodoList";
 export default function Container() {
   const [isModalVisible, setModalVisible] = useState(false);
   return (
-    <Content>
-      <header>
-        <small>Created by</small>
-        <strong>José Caldas</strong>
-      </header>
-      <h1>Keep productivity with DoList </h1>
-      <h2>Tasks </h2>
-      <ul>
-        <li>To-do</li>
-        <li>All</li>
-        <li>Done</li>
-      </ul>
-      <Main>
-        <div className="menuLeft">
-          <h1> </h1>
-          <p>
-            <p>Do Homework</p>
-          </p>
-        </div>
+    <Component>
+      <Content>
+        <header>
+          <small>Created by</small>
+          <strong>José Caldas</strong>
+        </header>
+        <h1>Keep productivity with DoList </h1>
+        <h2>Tasks </h2>
+        <ul>
+          <li>To-do</li>
+          <li>All</li>
+          <li>Done</li>
+        </ul>
+        <Main>
+          <div className="menuLeft">
+            <h1> </h1>
+            <p>
+              <p>Do Homework</p>
+            </p>
+          </div>
 
-        <div className="menuRight">
-          <h3>12/13 às 12:30</h3>
-          <FiCalendar />
-          <span>
-            <VscChromeClose />
-          </span>
-        </div>
-      </Main>
-      <Button>
-        <button onClick={() => setModalVisible(true)}>+</button>
-      </Button>
-      {isModalVisible ? (
-        <Modal onClose={() => setModalVisible(false)}>
-          <h1>Write down your goal</h1>
-        </Modal>
-      ) : null}
-      <TodoList />
-    </Content>
+          <div className="menuRight">
+            <h3>12/13 às 12:30</h3>
+            <FiCalendar />
+            <span>
+              <VscChromeClose />
+            </span>
+          </div>
+        </Main>
+        <Button onClick={() => setModalVisible(true)}>+</Button>
+        {isModalVisible ? (
+          <Modal onClose={() => setModalVisible(false)}>
+            <h1>Write down your goal</h1>
+            <input type="text" />
+          </Modal>
+        ) : null}
+        <TodoList />
+      </Content>
+    </Component>
   );
 }
 
-const Content = styled.div`
-  width: 800px;
+const Component = styled.div`
+  width: 100%;
+  height: 100vh;
   display: flex;
-  height: 600px;
+`;
+const Content = styled.div`
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  min-height: 600px;
   flex-direction: column;
-  margin: 60px auto;
+  margin: 0 auto;
   justify-content: space-around;
+  padding: 0 10px;
 
   header small {
     color: var(--gray100);
     font-size: 18px;
   }
+  header {
+    display: flex;
+    align-items: center;
+  }
   header strong {
     width: 240px;
     border: 3px solid #eae9f2;
     border-radius: 34px;
-    padding: 10px 60px;
+    padding: 10px 10px;
     margin-left: 20px;
     font-size: 18px;
     color: var(--gray);
+    text-align: center;
   }
   h1 {
     color: var(--blue);
@@ -81,7 +94,7 @@ const Content = styled.div`
     font-weight: bold;
   }
   ul {
-    width: 600px;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
   }
@@ -97,7 +110,6 @@ const Content = styled.div`
 `;
 
 const Main = styled.div`
-  width: 600px;
   display: flex;
   justify-content: space-between;
 
@@ -140,26 +152,19 @@ const Main = styled.div`
   }
 `;
 
-const Button = styled.div`
+const Button = styled.button`
+  background: var(--blue);
+
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 30px;
+  position: absolute;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  margin: 0 auto;
-
-  button {
-    background: var(--blue);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    outline: none;
-    cursor: pointer;
-    color: #fff;
-    font-size: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  justify-content: center;
 `;

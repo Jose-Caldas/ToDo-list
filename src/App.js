@@ -1,15 +1,9 @@
 import React from "react";
 
-import "./Global.css";
-
 import Container from "./components/Container";
 
 function App() {
-  return (
-    <div className="App">
-      <Container />
-    </div>
-  );
+  return <Container />;
 }
 
 export default App;

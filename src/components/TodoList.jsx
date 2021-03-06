@@ -28,6 +28,14 @@ export default function ToList() {
     const element = taskList.findIndex((elem) => elem.id === id);
 
     //copy array into a new variable
+    const newTaskList = [...taskList];
+
+    // edit elememt
+    newTaskList[element] = {
+      ...newTaskList[element],
+      isCompleted: true,
+    };
+    setTaskList(newTaskList);
   };
 
   return (

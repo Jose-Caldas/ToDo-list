@@ -10,10 +10,10 @@ export function Modal({ id = "modal", onClose = () => {}, children }) {
   return (
     <Wrapper id={id} className="modal" onClick={handleOutsideClick}>
       <div className="container">
+        <div className="content">{children}</div>
         <button className="close" onClick={onClose}>
           +
         </button>
-        <div className="content">{children}</div>
       </div>
     </Wrapper>
   );
