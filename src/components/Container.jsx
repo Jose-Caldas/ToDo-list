@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FiCalendar } from "react-icons/fi";
 import { VscChromeClose } from "react-icons/vsc";
 import { Modal } from "./Modal";
-// import { FiPlus } from "react-icons/fi";
+import TodoList from "./TodoList";
 
 export default function Container() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -44,6 +44,7 @@ export default function Container() {
           <h1>Write down your goal</h1>
         </Modal>
       ) : null}
+      <TodoList />
     </Content>
   );
 }

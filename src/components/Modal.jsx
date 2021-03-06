@@ -1,4 +1,3 @@
-// import { FiPlus } from "react-icons/fi";
 import styled from "styled-components";
 
 export function Modal({ id = "modal", onClose = () => {}, children }) {
@@ -65,7 +64,7 @@ const Wrapper = styled.div`
       top: 126px;
 
       color: var(--blue);
-      font-size: 30px;
+      font-size: 50px;
 
       /* ::before,
       ::after {
@@ -74,6 +73,8 @@ const Wrapper = styled.div`
         width: 2.5px;
         height: 24px;
         background-color: red;
+        top: -110px;
+        left: 15px;
       }
       ::before {
         transform: rotate(45deg);
