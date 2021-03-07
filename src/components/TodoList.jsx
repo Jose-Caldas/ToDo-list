@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { VscChromeClose } from "react-icons/vsc";
 
 import styled from "styled-components";
-export default function ToList() {
+export default function TodoList() {
   const [task, setTask] = useState("");
   const handleChange = (e) => {
     setTask(e.target.value);
@@ -40,8 +41,7 @@ export default function ToList() {
 
   return (
     <Wrapper className="container">
-      <div class="content">
-        <h1>ToDo - List </h1>
+      <FormModal class="content">
         <input
           type="text"
           name="text"
@@ -49,16 +49,20 @@ export default function ToList() {
           placeholder="New task..."
           onChange={(e) => handleChange(e)}
         />
+
         <input type="button" value="Add" id="button" onClick={addTask} />
-      </div>
+      </FormModal>
       {taskList !== [] ? (
         <ul>
           {taskList.map((t) => (
-            <li className="listItem">
+            <li className={t.isCompleted ? "crosText" : "listItem"}>
               {t.value}
-              <button className="completed">Completed</button>
+              <button
+                className="completed"
+                onClick={(e) => taskCompleted(e, t.id)}
+              ></button>
               <button className="delete" onClick={(e) => deleteTask(e, t.id)}>
-                Delete
+                <VscChromeClose />
               </button>
             </li>
           ))}
@@ -68,4 +72,14 @@ export default function ToList() {
   );
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  svg {
+    color: red;
+  }
+  button {
+    border: none;
+    background: transparent;
+    outline: none;
+  }
+`;
+const FormModal = styled.div``;

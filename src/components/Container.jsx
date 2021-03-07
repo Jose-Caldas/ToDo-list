@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FiCalendar } from "react-icons/fi";
-import { VscChromeClose } from "react-icons/vsc";
+// import { FiCalendar } from "react-icons/fi";
+// import { VscChromeClose } from "react-icons/vsc";
 import { Modal } from "./Modal";
-import TodoList from "./TodoList";
+import NavTabs from "./NavTabs";
+// import TodoList from "./TodoList";
+import FormModal from "./TodoList";
 
 export default function Container() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -16,35 +18,20 @@ export default function Container() {
         </header>
         <h1>Keep productivity with DoList </h1>
         <h2>Tasks </h2>
-        <ul>
-          <li>To-do</li>
-          <li>All</li>
-          <li>Done</li>
-        </ul>
-        <Main>
-          <div className="menuLeft">
-            <h1> </h1>
-            <p>
-              <p>Do Homework</p>
-            </p>
-          </div>
 
-          <div className="menuRight">
-            <h3>12/13 às 12:30</h3>
-            <FiCalendar />
-            <span>
-              <VscChromeClose />
-            </span>
-          </div>
+        <Main>
+          <NavTabs />
         </Main>
-        <Button onClick={() => setModalVisible(true)}>+</Button>
+        <Button onClick={() => setModalVisible(true)}>
+          <small>+</small>
+        </Button>
         {isModalVisible ? (
           <Modal onClose={() => setModalVisible(false)}>
             <h1>Write down your goal</h1>
-            <input type="text" />
+            <FormModal />
           </Modal>
         ) : null}
-        <TodoList />
+        {/* <TodoList /> */}
       </Content>
     </Component>
   );
@@ -101,11 +88,7 @@ const Content = styled.div`
   ul li {
     font-size: 18px;
     color: var(--gray200);
-  }
-  ul li:last-child {
-    color: var(--blue);
-    font-weight: bold;
-    border-bottom: 2px solid var(--blue);
+    cursor: pointer;
   }
 `;
 
@@ -152,7 +135,8 @@ const Main = styled.div`
   }
 `;
 
-const Button = styled.button`
+const Button = styled.small`
+  width: 100%;
   background: var(--blue);
 
   border: none;
@@ -163,8 +147,8 @@ const Button = styled.button`
   cursor: pointer;
   color: #fff;
   font-size: 30px;
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 `;

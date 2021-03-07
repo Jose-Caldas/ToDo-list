@@ -65,23 +65,6 @@ const Wrapper = styled.div`
 
       color: var(--blue);
       font-size: 50px;
-
-      /* ::before,
-      ::after {
-        content: "";
-        position: absolute;
-        width: 2.5px;
-        height: 24px;
-        background-color: red;
-        top: -110px;
-        left: 15px;
-      }
-      ::before {
-        transform: rotate(45deg);
-      }
-      ::after {
-        transform: rotate(-45deg);
-      } */
     }
   }
 `;
