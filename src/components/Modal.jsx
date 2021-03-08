@@ -1,70 +1,80 @@
 import styled from "styled-components";
-
-export function Modal({ id = "modal", onClose = () => {}, children }) {
-  //   const { children } = props;      // forma estruturada
-
-  const handleOutsideClick = (e) => {
+import React from "react";
+import { FiPlus } from "react-icons/fi";
+export function Modal({ id = "modal", onClose = () => {} }) {
+  const handleOutSideClick = (e) => {
     if (e.target.id === id) onClose();
   };
 
   return (
-    <Wrapper id={id} className="modal" onClick={handleOutsideClick}>
-      <div className="container">
-        <div className="content">{children}</div>
-        <button className="close" onClick={onClose}>
-          +
-        </button>
-      </div>
+    <Wrapper onClick={handleOutSideClick} className="modal" id={id}>
+      <Container>
+        <Content>
+          <h1>Write down your goal</h1>
+          <footer>
+            <input type="text" name="" id="" />
+            <button onClick={onClose}>
+              <FiPlus />
+            </button>
+          </footer>
+        </Content>
+      </Container>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  background-color: rgba(0, 0, 0, 0.8);
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100vh;
 
-  .container {
+  background: rgba(0, 0, 0, 0.5);
+
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 10;
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+
+  background: var(--white);
+  width: 70%;
+  height: 30%;
+  border-radius: 5px;
+`;
+const Content = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  h1 {
+    text-align: center;
+  }
+
+  footer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    background-color: #fff;
-    width: 60%;
-    height: 30%;
-    border-radius: 20px;
-
-    h1 {
-      color: var(--blue);
-      font-weight: 700;
-    }
-
-    .close {
-      background: transparent;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      right: -291px;
-      top: 29px;
-      padding: 10px;
-
-      position: relative;
-      right: -293px;
-      top: 126px;
-
-      color: var(--blue);
-      font-size: 50px;
-    }
+    justify-content: space-between;
+  }
+  input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--blue);
+    font-size: 18px;
+  }
+  button {
+    border: none;
+    background: none;
+    border-bottom: 1px solid var(--blue);
+  }
+  svg {
+    color: var(--blue);
+    width: 30px;
+    height: 30px;
   }
 `;

@@ -21,3 +21,11 @@ ul,
 li {
   list-style: none;
 }
+input,
+button {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
