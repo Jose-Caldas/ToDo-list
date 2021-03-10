@@ -1,9 +1,14 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import { FiPlus } from "react-icons/fi";
 export function Modal({ id = "modal", onClose = () => {} }) {
   const handleOutSideClick = (e) => {
     if (e.target.id === id) onClose();
+  };
+
+  const [inputValue, setInputValue] = useState("");
+  const onChangeHandler = (event) => {
+    setInputValue(event.target.value);
   };
 
   return (
@@ -12,7 +17,13 @@ export function Modal({ id = "modal", onClose = () => {} }) {
         <Content>
           <h1>Write down your goal</h1>
           <footer>
-            <input type="text" name="" id="" />
+            <input
+              type="text"
+              name="name"
+              onChange={onChangeHandler}
+              value={inputValue}
+            />
+            <p>{inputValue}</p>
             <button onClick={onClose}>
               <FiPlus />
             </button>

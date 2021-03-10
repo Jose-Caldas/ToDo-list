@@ -5,6 +5,11 @@ import "./Global.css";
 import { Modal } from "./components/Modal";
 
 function App() {
+  const [inputValue, setInputValue] = useState("");
+  const onChangeHandler = (event) => {
+    setInputValue(event.target.value);
+  };
+
   const [tab, setTab] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
   return (
@@ -17,41 +22,34 @@ function App() {
         <h1>Keep productivity with DoList </h1>
         <h2>Tasks </h2>
         <Navtabs>
-          <ul>
-            <li>
-              <input
-                onChange={() => setTab("Todo")}
-                type="radio"
-                name="tabs"
-                class="rd-tabs"
-                id="tab1"
-              />
-              <label for="tab1">Todo</label>
-            </li>
-            <li>
-              <input
-                onChange={() => setTab("All")}
-                type="radio"
-                name="tabs"
-                class="rd-tabs"
-                id="tab2"
-              />
-              <label for="tab2">All</label>
-            </li>
-            <li>
-              <input
-                onChange={() => setTab("Done")}
-                type="radio"
-                name="tabs"
-                class="rd-tabs"
-                id="tab3"
-              />
-              <label for="tab3">Done</label>
-            </li>
-          </ul>
+          <div>
+            <button onClick={() => setTab("Todo")}>
+              <p>To-do</p>
+            </button>
+            <button onClick={() => setTab("All")}>
+              <p>All</p>
+            </button>
+            <button onClick={() => setTab("Done")}>
+              <p>Done</p>
+            </button>
+          </div>
+
+          <div>
+            <input
+              type="text"
+              name="name"
+              placeholder="new todo..."
+              onChange={onChangeHandler}
+              value={inputValue}
+            ></input>
+            <button onClick={() => setTab("Todo")} className="add">
+              Add ToDo
+            </button>
+          </div>
         </Navtabs>
+
         <ContentTabs>
-          <article>{tab === "Todo" && "Todo"}</article>
+          <article>{tab === "Todo" && inputValue}</article>
           <article>{tab === "All" && "All"}</article>
           <article>{tab === "Done" && "Done"}</article>
         </ContentTabs>
@@ -65,11 +63,13 @@ function App() {
 }
 
 export default App;
+
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 `;
 const Content = styled.div`
   width: 100%;
@@ -114,41 +114,54 @@ const Content = styled.div`
 const Navtabs = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-around;
 
-  ul {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  input {
+    border: none;
+    border-bottom: 2px solid var(--blue);
   }
 
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+    margin: 0 auto;
   }
-
-  label {
-    width: 100%;
-    padding: 0 10px;
-    /* margin-right: 50px; */
+  button p {
     font-size: 18px;
     font-weight: bold;
-    color: var(--gray200);
+    color: var(--gray);
     cursor: pointer;
-  }
-
-  .rd-tabs:checked ~ label {
-    border-bottom: 2px solid var(--blue);
     position: relative;
+    padding: 0 10px;
   }
 
-  .rd-tabs ~ label:hover {
-    border-bottom: 2px solid var(--blue);
+  button p:hover {
+    transition: all 0.3s ease;
+  }
+  button p:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--blue);
+    left: 0;
+    bottom: 0;
+    transition: all 0.3s ease;
+  }
+  p:hover::before {
+    width: 100%;
+    transition: all 0.3s ease;
   }
 
-  .rd-tabs {
-    display: none;
+  .add {
+    border: 1px solid var(--gray200);
+    color: var(--blue);
+    font-weight: bold;
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 5px;
   }
 `;
 const ContentTabs = styled.div`
