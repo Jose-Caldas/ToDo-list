@@ -1,20 +1,53 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-// import { FiPlus } from "react-icons/fi";
+import { VscChromeClose } from "react-icons/vsc";
+import { FcCalendar } from "react-icons/fc";
+import { MdKeyboard } from "react-icons/md";
+
 import "./Global.css";
 import { Modal } from "./components/Modal";
 
 function App() {
-  const [inputValue, setInputValue] = useState("");
+  const [task, setTask] = useState("");
+  const [taskList, setTaskList] = useState([]);
+
   const onChangeHandler = (event) => {
-    setInputValue(event.target.value);
+    setTask(event.target.value);
   };
 
-  const [tab, setTab] = useState("");
+  const addTask = () => {
+    if (task !== "") {
+      const taskDetail = {
+        id: Math.floor(Math.random() * 1000),
+        value: task,
+        isCompleted: false,
+      };
+      setTaskList([...taskList, taskDetail]);
+    }
+  };
+
+  const deleteTask = (e, id) => {
+    e.preventDefault();
+    setTaskList(taskList.filter((t) => t.id !== id));
+  };
+
+  const taskCompleted = (e, id) => {
+    e.preventDefault();
+    const element = taskList.findIndex((elem) => elem.id === id);
+    const newTaskList = [...taskList];
+    newTaskList[element] = {
+      ...newTaskList[element],
+      isCompleted: true,
+    };
+    setTaskList(newTaskList);
+  };
+
   const [isModalVisible, setModalVisible] = useState(false);
+
   return (
     <Container>
       <Content>
+        <MdKeyboard className="keyboard" />
         <header>
           <small>Created by</small>
           <strong>José Caldas</strong>
@@ -23,15 +56,15 @@ function App() {
         <h2>Tasks </h2>
         <Navtabs>
           <div>
-            <button onClick={() => setTab("Todo")}>
+            <TabItem isActive={task === "Todo"} onClick={addTask}>
               <p>To-do</p>
-            </button>
-            <button onClick={() => setTab("All")}>
+            </TabItem>
+            {/* <TabItem isActive={task === "All"} onClick={() => setTask("All")}>
               <p>All</p>
-            </button>
-            <button onClick={() => setTab("Done")}>
+            </TabItem>
+            <TabItem isActive={task === "Done"} onClick={() => setTask("Done")}>
               <p>Done</p>
-            </button>
+            </TabItem> */}
           </div>
 
           <div>
@@ -39,19 +72,53 @@ function App() {
               type="text"
               name="name"
               placeholder="new todo..."
-              onChange={onChangeHandler}
-              value={inputValue}
+              onChange={(e) => onChangeHandler(e)}
+              value={task}
             ></input>
-            <button onClick={() => setTab("Todo")} className="add">
+            <button onClick={addTask} className="add">
               Add ToDo
             </button>
           </div>
         </Navtabs>
 
         <ContentTabs>
-          <article>{tab === "Todo" && inputValue}</article>
-          <article>{tab === "All" && "All"}</article>
-          <article>{tab === "Done" && "Done"}</article>
+          {taskList !== [] ? (
+            <article>
+              {taskList.map((t) => (
+                <label className="contentArticle">
+                  <div>
+                    <input
+                      className="completed"
+                      type="checkbox"
+                      name="done"
+                      id="done"
+                      onClick={(e) => taskCompleted(e, t.id)}
+                    />
+                    <div className="completeTask">
+                      <p className={t.isCompleted ? "crossText" : "listItem"}>
+                        {t.value}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="nav-left">
+                    <small>{Date()}</small>
+                    <span>
+                      <FcCalendar />
+                    </span>
+                    <button
+                      className="delete"
+                      onClick={(e) => deleteTask(e, t.id)}
+                    >
+                      <VscChromeClose />
+                    </button>
+                  </div>
+                </label>
+              ))}
+            </article>
+          ) : null}
+
+          {/* <article>{task === "All" && "All"}</article>
+          <article>{task === "Done" && "Done"}</article> */}
         </ContentTabs>
         <Button onClick={() => setModalVisible(true)}>+</Button>
         {isModalVisible ? (
@@ -63,6 +130,8 @@ function App() {
 }
 
 export default App;
+
+export function ModalB() {}
 
 const Container = styled.div`
   width: 100%;
@@ -122,11 +191,6 @@ const Navtabs = styled.div`
   }
 
   button {
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background: none;
-    margin: 0 auto;
   }
   button p {
     font-size: 18px;
@@ -164,8 +228,56 @@ const Navtabs = styled.div`
     border-radius: 5px;
   }
 `;
+
+const TabItem = styled.button`
+  border-bottom: ${(props) => (props.isActive ? " 1px solid var(--blue)" : "")};
+`;
+
 const ContentTabs = styled.div`
-  color: var(--gray200);
+  article {
+    color: var(--gray200);
+    width: 100%;
+    height: 200px;
+    overflow-y: auto;
+  }
+
+  article div {
+    display: flex;
+    align-items: center;
+  }
+
+  .contentArticle {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contentArticle p {
+    color: var(--gray200);
+    margin-left: 10px;
+  }
+
+  .contentArticle button {
+    margin: 0 20px;
+    color: red;
+  }
+
+  .nav-left {
+  }
+  .nav-left span {
+    margin-left: 10px;
+  }
+  .completeTask {
+  }
+
+  .nav-left svg {
+    display: block;
+    color: red;
+  }
+  .crossText {
+    text-decoration: line-through;
+    font-style: italic;
+    color: var(--blue);
+  }
 `;
 
 const Button = styled.div`

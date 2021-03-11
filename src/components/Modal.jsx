@@ -23,7 +23,7 @@ export function Modal({ id = "modal", onClose = () => {} }) {
               onChange={onChangeHandler}
               value={inputValue}
             />
-            <p>{inputValue}</p>
+            {/* <p>{inputValue}</p> */}
             <button onClick={onClose}>
               <FiPlus />
             </button>
