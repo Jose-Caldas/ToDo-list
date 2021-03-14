@@ -33,6 +33,51 @@ li {
 }
 input,
 button {
+  :root {
+    --white: #fbfcff;
+    --blue: #331cbf;
+    --gray: #45475d;
+    --gray200: #a9aab6;
+    --gray100: #c2c4d9;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Source Sans Pro", sans-serif;
+  }
+
+  body {
+    background-color: var(--white);
+  }
+
+  body svg.keyboard {
+    color: var(--gray200);
+    cursor: pointer;
+    position: fixed;
+    right: 50px;
+    top: 25px;
+    width: 30px;
+    height: 30px;
+  }
+
+  ul,
+  li {
+    list-style: none;
+  }
+  input,
+  button {
+    outline: none;
+  }
+
+  button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+  }
+
   outline: none;
 }
 
