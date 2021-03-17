@@ -24,8 +24,6 @@ export default TodoList;
 const UlContainer = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
-  padding: 0 20px;
   overflow: auto;
   height: 300px;
 
@@ -34,6 +32,5 @@ const UlContainer = styled.div`
     flex-direction: column;
     width: 100%;
     list-style: none;
-    align-items: center;
   }
 `;

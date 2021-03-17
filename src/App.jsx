@@ -10,29 +10,27 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
 
-  // select status
+  // selecionar o status
   const [status, setStatus] = useState("all");
-  // filtrar o estado
+
+  // filtrar o estatus
   const [filteredTodos, setFilteredTodos] = useState([]);
 
-  // run once when the app start
-
-  //Save to Local
+  //Salvar em LocalStorage
   useEffect(() => {
     const getLocalTodos = () => {
       if (localStorage.getItem("todos") === null) {
-        localStorage.setItem("todos", JSON.stringify([]));
+        window.localStorage.setItem("todos", JSON.stringify([]));
       } else {
         let todoLocal = JSON.parse(localStorage.getItem("todos"));
         setTodos(todoLocal);
       }
     };
+    getLocalTodos();
     const saveLocalTodos = () => {
-      localStorage.setItem("todos", JSON.stringify([]));
+      window.localStorage.setItem("todos", JSON.stringify([]));
     };
     saveLocalTodos();
-
-    getLocalTodos();
   }, []);
   //Use Effect
 
@@ -98,21 +96,20 @@ const AppContainer = styled.div`
   height: 100vh;
   max-width: 700px;
   display: flex;
-  /* justify-content: space-around; */
   min-height: 600px;
   flex-direction: column;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 70px;
 `;
 const Header = styled.div`
-  height: 30%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 
   h1 {
     color: var(--blue);
-    font-size: 46px;
+    font-size: 40px;
     font-weight: bold;
   }
   h2 {

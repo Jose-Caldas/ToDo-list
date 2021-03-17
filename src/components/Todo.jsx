@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
-import { BsTrash } from "react-icons/bs";
+import { MdClose } from "react-icons/md";
 import { FiCalendar } from "react-icons/fi";
 import styled from "styled-components";
 
@@ -28,16 +28,16 @@ function Todo({ text, todo, todos, setTodos }) {
   return (
     <TodoContainer className="todo">
       <div className="li-left">
-        <li className={`todo-item ${todo.Done ? "Done" : ""}`}>{text}</li>
         <button onClick={completeHadler} className="complete-btn">
-          <FaCheck className="fas fa-check" />
+          <FaCheck />
         </button>
+        <li className={`todo-item ${todo.Done ? "Done" : ""}`}>{text}</li>
       </div>
       <div className="li-right">
         {new Date().toDateString()}
         <FiCalendar />
-        <button onClick={deleteHandler} className="trash-btn">
-          <BsTrash className="fas fa-trash" />
+        <button onClick={deleteHandler} className="delete-btn">
+          <MdClose />
         </button>
       </div>
     </TodoContainer>
@@ -48,29 +48,67 @@ export default Todo;
 
 const TodoContainer = styled.div`
   width: 100%;
-  margin: 0.5rem;
   font-size: 18px;
-  color: var(--gray200);
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all 1s ease;
+  /* border-bottom: 1px solid var(--gray100); */
+
+  li {
+    flex: 1;
+    color: var(--gray);
+  }
 
   .li-left {
-    width: 30%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 20px;
   }
 
   .li-right {
-    width: 80%;
+    width: 50%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
+    font-size: 12px;
+    color: var(--gray200);
+
+    svg {
+      margin: 10px;
+    }
+    .delete-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .delete-btn:hover {
+      background: pink;
+      border-radius: 50%;
+    }
   }
-  li {
-    /* background: yellow; */
+
+  .complete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 10px;
+    margin-right: 20px;
+  }
+
+  .Done {
+    text-decoration: line-through;
+    opacity: 0.5;
+    color: var(--blue);
   }
 `;
