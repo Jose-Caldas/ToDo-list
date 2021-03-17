@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FiPlus } from "react-icons/fi";
-import { MdClose } from "react-icons/md";
-import { FcCalendar } from "react-icons/fc";
+// import { MdClose } from "react-icons/md";
+// import { FcCalendar } from "react-icons/fc";
 // import { BiSquareRounded } from "react-icons/bi";
 
-function Modal({ id = "close" }) {
+function Modal({ id = "close", inputText, setInputText, setTodos, todos }) {
   //Modal ==========================================================================
   const [isModalVisible, setModalIsvisible] = useState(false);
   const handleOutSideClick = (e) => {
@@ -14,41 +14,17 @@ function Modal({ id = "close" }) {
   };
 
   //Todo =============================================================================
-
-  const [task, setTask] = useState("");
-  const [taskList, setTaskList] = useState([]);
   const inputTextHandler = (e) => {
-    setTask(e.target.value);
+    setInputText(e.target.value);
   };
-
-  const addTask = () => {
-    if (task !== "") {
-      const taskDetail = {
-        id: Math.floor(Math.random() * 1000),
-        value: task,
-        isCompleted: false,
-      };
-
-      setTaskList([...taskList, taskDetail]);
-    }
-  };
-
-  const deleteTask = (e, id) => {
+  const submitTodoHandler = (e) => {
     e.preventDefault();
-    setTaskList(taskList.filter((t) => t.id !== id));
+    setTodos([
+      ...todos,
+      { text: inputText, Done: false, id: Math.random() * 1000 },
+    ]);
+    setInputText("");
   };
-
-  const taskCompleted = (e, id) => {
-    e.preventDefault();
-    const element = taskList.findIndex((elem) => elem.id === id);
-    const newTaskList = [...taskList];
-    newTaskList[element] = {
-      ...newTaskList[element],
-      isCompleted: true,
-    };
-    setTaskList(newTaskList);
-  };
-
   return (
     <div>
       {isModalVisible ? (
@@ -60,13 +36,18 @@ function Modal({ id = "close" }) {
               </header>
               <footer>
                 <input
-                  onChange={(e) => inputTextHandler(e)}
+                  value={inputText}
+                  onChange={inputTextHandler}
                   type="text"
                   name=""
                   id=""
                 />
 
-                <button className="add-btn" onClick={addTask}>
+                <button
+                  onClick={submitTodoHandler}
+                  type="submit"
+                  className="add-btn"
+                >
                   <FiPlus />
                 </button>
                 <button
@@ -80,50 +61,6 @@ function Modal({ id = "close" }) {
           </div>
         </ModalContainer>
       ) : null}
-
-      <NavContainer>
-        <Titles>
-          <p>todo</p>
-          <p>All</p>
-          <p>Done</p>
-        </Titles>
-        <NavContent>
-          {taskList !== [] ? (
-            <article>
-              {taskList.map((t) => (
-                <label className="contentArticle">
-                  <div>
-                    <input
-                      className="completed"
-                      type="checkbox"
-                      name="done"
-                      id="done"
-                      onClick={(e) => taskCompleted(e, t.id)}
-                    />
-                    <div className="completeTask">
-                      <p className={t.isCompleted ? "crossText" : "listItem"}>
-                        {t.value}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="nav-left">
-                    <small>{Date()}</small>
-                    <span>
-                      <FcCalendar />
-                    </span>
-                    <button
-                      className="delete"
-                      onClick={(e) => deleteTask(e, t.id)}
-                    >
-                      <MdClose />
-                    </button>
-                  </div>
-                </label>
-              ))}
-            </article>
-          ) : null}
-        </NavContent>
-      </NavContainer>
 
       <OpenModalButton onClick={() => setModalIsvisible(true)}>
         +
@@ -156,8 +93,9 @@ const ModalContainer = styled.div`
   }
 
   header h1 {
-    font-size: 30px;
+    font-size: 32px;
     text-align: center;
+    color: var(--blue);
   }
 
   .modal {
@@ -178,6 +116,7 @@ const ModalContainer = styled.div`
       font-size: 18px;
       color: var(--blue);
       background: transparent;
+      outline: none;
     }
     button.add-btn {
       border: none;
@@ -217,107 +156,4 @@ const OpenModalButton = styled.div`
   color: #fff;
   text-align: center;
   margin-top: 20px;
-`;
-
-const NavContainer = styled.div`
-  width: 100%;
-  height: 200px;
-  display: flex;
-  align-items: center;
-
-  flex-direction: column;
-`;
-
-const Titles = styled.div`
-  width: 60%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 20px;
-
-  p {
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--gray);
-    position: relative;
-  }
-
-  p:hover {
-    transition: all 0.3s ease;
-  }
-  p:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: var(--blue);
-    left: 0;
-    bottom: 0;
-    transition: all 0.3s ease;
-  }
-  p:hover::before {
-    width: 100%;
-    transition: all 0.3s ease;
-  }
-`;
-const NavContent = styled.div`
-  width: 80%;
-  article {
-    color: var(--gray200);
-    width: 100%;
-    height: 150px;
-    overflow-y: auto;
-  }
-
-  article div {
-    display: flex;
-    align-items: center;
-  }
-
-  .contentArticle {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  p {
-    color: var(--gray200);
-    margin-left: 12px;
-  }
-
-  small {
-    font-size: 10px;
-  }
-
-  .contentArticle button {
-    margin: 0 20px;
-    color: red;
-  }
-
-  .nav-left {
-  }
-  .nav-left span {
-    margin-left: 10px;
-  }
-  .completeTask p {
-    color: var(--gray);
-    font-size: 18px;
-  }
-
-  .nav-left svg {
-    display: block;
-  }
-  .crossText {
-    text-decoration: line-through;
-    font-style: italic;
-    color: var(--gray);
-  }
-
-  .listItem p {
-    font-size: 18px;
-    color: blue;
-  }
-  .delete {
-    background: none;
-  }
 `;
