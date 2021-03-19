@@ -33,5 +33,7 @@ const UlContainer = styled.div`
     flex-direction: column;
     width: 100%;
     list-style: none;
+    animation-name: fade;
+    animation-duration: 200ms;
   }
 `;

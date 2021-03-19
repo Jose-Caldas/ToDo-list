@@ -80,6 +80,17 @@ const ModalContainer = styled.div`
   z-index: 10;
   background: rgba(0, 0, 0, 0.5);
 
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
   .content {
     display: flex;
     justify-content: center;
@@ -87,6 +98,8 @@ const ModalContainer = styled.div`
     min-width: 50%;
     height: 25%;
     border-radius: 5px;
+    animation-name: fade;
+    animation-duration: 500ms;
   }
 
   header h1 {

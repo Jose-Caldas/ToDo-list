@@ -25,6 +25,20 @@ const FormContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
 
+  animation-name: fade;
+  animation-duration: 500ms;
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
   .filter-todo {
     padding: 1rem;
     background: none;

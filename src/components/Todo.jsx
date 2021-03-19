@@ -52,12 +52,12 @@ const TodoContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 1s ease;
-  /* border-bottom: 1px solid var(--gray100); */
 
   li {
     flex: 1;
     color: var(--gray);
+    animation-name: move;
+    animation-duration: 500ms;
   }
 
   .li-left {
@@ -74,6 +74,8 @@ const TodoContainer = styled.div`
     align-items: center;
     font-size: 12px;
     color: var(--gray200);
+    animation-name: move;
+    animation-duration: 500ms;
 
     svg {
       margin: 10px;
@@ -121,6 +123,16 @@ const TodoContainer = styled.div`
   }
   .check {
     background: var(--gray300);
-    /* transition: 0.5s; */
+    transition: 0.5s;
+  }
+  @keyframes move {
+    from {
+      opacity: 0;
+      transform: translateX(-40%);
+    }
+    to {
+      opacity: (1);
+      transform: translateX(0);
+    }
   }
 `;
