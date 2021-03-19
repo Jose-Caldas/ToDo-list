@@ -20,7 +20,7 @@ export default createGlobalStyle`
   font-family: "Source Sans Pro", sans-serif;
 }
 body{
-    background-color: var(--white);
+    background-color: #f6f7fb;
   
 }
 

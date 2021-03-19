@@ -5,6 +5,7 @@ import Modal from "./components/Modal";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import GlobalStyles from "./components/GlobalStyles";
+import Keyboard from "./components/KeyMap";
 
 function App() {
   // estados
@@ -60,7 +61,7 @@ function App() {
   return (
     <div className="App">
       <AppContainer>
-        <MdKeyboard className="keyboard" />
+        <Keyboard />
         <Header>
           <Info>
             <small>Created by</small>
@@ -105,19 +106,20 @@ const AppContainer = styled.div`
   min-height: 600px;
   flex-direction: column;
   margin: 0 auto;
-  padding: 70px;
+  padding: 70px 60px;
 `;
 const Header = styled.div`
-  height: 60%;
+  height: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 
   h1 {
     color: var(--blue);
-    font-size: 40px;
-    font-weight: bold;
+    font-size: 42px;
+    font-weight: 600;
   }
+
   h2 {
     color: var(--blue);
     font-size: 26px;

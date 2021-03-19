@@ -31,7 +31,7 @@ function Todo({ text, todo, todos, setTodos }) {
         >
           {/* <FaCheck /> */}
         </button>
-        <li className={`todo-item ${todo.Done ? "Done" : ""}`}>{text}</li>
+        <li>{text}</li>
       </div>
       <div className="li-right">
         {new Date().toDateString()}
@@ -48,16 +48,16 @@ export default Todo;
 
 const TodoContainer = styled.div`
   width: 100%;
-  font-size: 18px;
+  font-size: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  animation-name: move;
+  animation-duration: 500ms;
 
   li {
     flex: 1;
     color: var(--gray);
-    animation-name: move;
-    animation-duration: 500ms;
   }
 
   .li-left {
@@ -72,7 +72,8 @@ const TodoContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
     color: var(--gray200);
     animation-name: move;
     animation-duration: 500ms;
@@ -115,12 +116,9 @@ const TodoContainer = styled.div`
   .complete-btn:hover {
     box-shadow: 0px 0px 0px 2.3px #8f83d1;
   }
-
-  .Done {
-    text-decoration: line-through;
-    opacity: 0.5;
-    color: var(--blue);
+  .todo-item {
   }
+
   .check {
     background: var(--gray300);
     transition: 0.5s;
