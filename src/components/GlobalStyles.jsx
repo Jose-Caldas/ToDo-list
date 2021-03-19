@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+export default createGlobalStyle`
 :root {
   --white: #fbfcff;
   --blue: #331cbf;
@@ -7,15 +10,15 @@
   --red: #f56a6a;
 }
 
-* {
-  margin: 0;
+*{
+    margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Source Sans Pro", sans-serif;
 }
-
-body {
-  background-color: var(--white);
+body{
+    background-color: var(--white);
+  
 }
 
 body svg.keyboard {
@@ -28,20 +31,6 @@ body svg.keyboard {
   height: 30px;
 }
 
-ul,
-li {
-  list-style: none;
-}
-
-body svg.keyboard {
-  color: var(--gray200);
-  cursor: pointer;
-  position: fixed;
-  right: 50px;
-  top: 25px;
-  width: 30px;
-  height: 30px;
-}
 
 ul,
 li {
@@ -58,3 +47,5 @@ button {
   cursor: pointer;
   background: none;
 }
+
+`;

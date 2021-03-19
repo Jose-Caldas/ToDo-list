@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FiPlus } from "react-icons/fi";
-// import { MdClose } from "react-icons/md";
-// import { FcCalendar } from "react-icons/fc";
-// import { BiSquareRounded } from "react-icons/bi";
 
 function Modal({ id = "close", inputText, setInputText, setTodos, todos }) {
   //Modal ==========================================================================

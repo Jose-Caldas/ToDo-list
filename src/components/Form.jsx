@@ -1,5 +1,4 @@
 import React from "react";
-import "../Global.css";
 import styled from "styled-components";
 
 function Form({ setStatus }) {
@@ -39,6 +38,9 @@ const FormContainer = styled.div`
     font-size: 18px;
     cursor: pointer;
     width: 8rem;
+
+    option {
+    }
   }
   .select {
     display: flex;

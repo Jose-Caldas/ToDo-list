@@ -1,56 +1,61 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { MdKeyboard } from "react-icons/md";
-import "./Global.css";
 import Modal from "./components/Modal";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
+import GlobalStyles from "./components/GlobalStyles";
 
 function App() {
+  // estados
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
 
-  // selecionar o status
-  const [status, setStatus] = useState("all");
+  // selecionar o status dos itens do select
+  const [status, setStatus] = useState("All");
 
-  // filtrar o estatus
+  // filtrar o estatus dos todos
   const [filteredTodos, setFilteredTodos] = useState([]);
 
-  //Salvar em LocalStorage
   useEffect(() => {
-    const getLocalTodos = () => {
-      if (localStorage.getItem("todos") === null) {
-        window.localStorage.setItem("todos", JSON.stringify([]));
-      } else {
-        let todoLocal = JSON.parse(localStorage.getItem("todos"));
-        setTodos(todoLocal);
-      }
-    };
     getLocalTodos();
-    const saveLocalTodos = () => {
-      window.localStorage.setItem("todos", JSON.stringify([]));
-    };
-    saveLocalTodos();
   }, []);
-  //Use Effect
 
   useEffect(() => {
-    const filteredHandler = () => {
-      switch (status) {
-        case "Done":
-          setFilteredTodos(todos.filter((todo) => todo.Done === true));
-          break;
-        case "Todo":
-          setFilteredTodos(todos.filter((todo) => todo.Done === false));
-          break;
-        default:
-          setFilteredTodos(todos);
-          break;
-      }
-    };
-
+    saveLocalTodos();
     filteredHandler();
   }, [todos, status]);
+
+  // manipular e filtrar os todos
+
+  const filteredHandler = () => {
+    switch (status) {
+      case "Done":
+        setFilteredTodos(todos.filter((todo) => todo.Done === true));
+        break;
+      case "Todo":
+        setFilteredTodos(todos.filter((todo) => todo.Done === false));
+        break;
+      default:
+        setFilteredTodos(todos);
+        break;
+    }
+  };
+
+  // Salvar em localStorage
+
+  const saveLocalTodos = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  };
+
+  const getLocalTodos = () => {
+    if (localStorage.getItem("todos") === null) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    } else {
+      let localTodo = JSON.parse(localStorage.getItem("todos"));
+      setTodos(localTodo);
+    }
+  };
 
   return (
     <div className="App">
@@ -82,6 +87,7 @@ function App() {
           setTodos={setTodos}
           todos={todos}
         />
+        <GlobalStyles />
       </AppContainer>
     </div>
   );

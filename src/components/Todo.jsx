@@ -5,10 +5,8 @@ import { FiCalendar } from "react-icons/fi";
 import styled from "styled-components";
 
 function Todo({ text, todo, todos, setTodos }) {
-  //Events
-
   const deleteHandler = () => {
-    setTodos(todos.filter((elem) => elem.id !== todo.id));
+    setTodos(todos.filter((el) => el.id !== todo.id));
   };
 
   const completeHadler = () => {
@@ -83,7 +81,8 @@ const TodoContainer = styled.div`
       align-items: center;
       justify-content: center;
       color: var(--red);
-      font-size: 20px;
+      font-size: 15px;
+
       cursor: pointer;
     }
     .delete-btn:hover {
