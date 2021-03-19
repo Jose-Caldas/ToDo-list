@@ -1,5 +1,4 @@
 import React from "react";
-import { FaCheck } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { FiCalendar } from "react-icons/fi";
 import styled from "styled-components";
@@ -26,8 +25,11 @@ function Todo({ text, todo, todos, setTodos }) {
   return (
     <TodoContainer className="todo">
       <div className="li-left">
-        <button onClick={completeHadler} className="complete-btn">
-          <FaCheck />
+        <button
+          onClick={completeHadler}
+          className={`complete-btn ${todo.Done ? "complete-btn" : "check"}`}
+        >
+          {/* <FaCheck /> */}
         </button>
         <li className={`todo-item ${todo.Done ? "Done" : ""}`}>{text}</li>
       </div>
@@ -88,6 +90,7 @@ const TodoContainer = styled.div`
     .delete-btn:hover {
       background: pink;
       border-radius: 50%;
+      opacity: 0.8;
     }
   }
 
@@ -97,17 +100,27 @@ const TodoContainer = styled.div`
     justify-content: center;
     background: var(--blue);
     color: white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    border-radius: 5px;
+    width: 18px;
+    height: 18px;
     cursor: pointer;
     font-size: 10px;
     margin-right: 20px;
+    transition: 0.5s;
+    padding-left: 3px;
+  }
+
+  .complete-btn:hover {
+    box-shadow: 0px 0px 0px 2.3px #8f83d1;
   }
 
   .Done {
     text-decoration: line-through;
     opacity: 0.5;
     color: var(--blue);
+  }
+  .check {
+    background: var(--gray300);
+    /* transition: 0.5s; */
   }
 `;

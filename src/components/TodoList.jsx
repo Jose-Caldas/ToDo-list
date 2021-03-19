@@ -26,6 +26,7 @@ const UlContainer = styled.div`
   display: flex;
   overflow: auto;
   height: 300px;
+  padding-left: 5px;
 
   ul {
     display: flex;

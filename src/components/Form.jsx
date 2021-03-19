@@ -11,7 +11,7 @@ function Form({ setStatus }) {
         <select onChange={statusHandler} name="todos" className="filter-todo">
           <option value="All">All</option>
           <option value="Done">Done</option>
-          <option value="Todo">Todo</option>
+          <option value="Todo">To-Do</option>
         </select>
       </div>
     </FormContainer>
@@ -28,6 +28,7 @@ const FormContainer = styled.div`
   .filter-todo {
     padding: 1rem;
     background: none;
+    border-bottom: 1px solid var(--gray200);
   }
   select {
     outline: none;
