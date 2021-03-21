@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { MdKeyboard } from "react-icons/md";
 import Modal from "./components/Modal";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
@@ -96,8 +95,6 @@ function App() {
 
 export default App;
 
-// const Form = styled.div``;
-
 const AppContainer = styled.div`
   width: 100%;
   height: 100vh;
@@ -106,7 +103,7 @@ const AppContainer = styled.div`
   min-height: 600px;
   flex-direction: column;
   margin: 0 auto;
-  padding: 70px 60px;
+  padding: 50px 60px;
 `;
 const Header = styled.div`
   height: 30%;

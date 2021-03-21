@@ -72,8 +72,7 @@ const TodoContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 12px;
     color: var(--gray200);
     animation-name: move;
     animation-duration: 500ms;

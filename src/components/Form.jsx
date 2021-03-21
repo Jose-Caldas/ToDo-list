@@ -6,13 +6,11 @@ function Form({ setStatus }) {
     setStatus(e.target.value);
   };
   return (
-    <FormContainer>
-      <div className="select">
-        <select onChange={statusHandler} name="todos" className="filter-todo">
-          <option value="All">All</option>
-          <option value="Done">Done</option>
-          <option value="Todo">To-Do</option>
-        </select>
+    <FormContainer onChange={statusHandler}>
+      <div className="status-btn">
+        <button onClick={() => setStatus("Todo")}>To-Do</button>
+        <button onClick={() => setStatus("All")}>All</button>
+        <button onClick={() => setStatus("Done")}>Done</button>
       </div>
     </FormContainer>
   );
@@ -21,32 +19,28 @@ function Form({ setStatus }) {
 export default Form;
 
 const FormContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: white;
+  padding: 40px 0;
 
-  .filter-todo {
-    padding: 1rem;
-    background: none;
-    border-bottom: 1px solid var(--gray200);
-  }
-  select {
-    outline: none;
-    border: none;
-    color: var(--blue);
-    font-weight: bold;
-    font-family: "Source Sans Pro", sans-serif;
-    font-size: 18px;
-    cursor: pointer;
-    width: 8rem;
-
-    option {
-    }
-  }
-  .select {
+  .status-btn {
     display: flex;
-    justify-content: flex-end;
-    margin: 1rem;
+    justify-content: center;
+  }
+  button {
+    width: 10%;
+    font-size: 18px;
+    color: var(--gray);
+    font-weight: bold;
+    margin-right: 30px;
     position: relative;
+    &:focus {
+      color: var(--blue);
+
+      box-shadow: 1px 1px 4px var(--gray200);
+      border-radius: 3px;
+    }
+    .dourado {
+      background-color: blue;
+    }
   }
 `;

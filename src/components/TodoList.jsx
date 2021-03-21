@@ -36,5 +36,6 @@ const UlContainer = styled.div`
     list-style: none;
     animation-name: fade;
     animation-duration: 200ms;
+    padding-left: 5px;
   }
 `;

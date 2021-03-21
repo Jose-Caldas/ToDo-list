@@ -4,8 +4,16 @@ import { MdKeyboard } from "react-icons/md";
 
 function Keyboard() {
   const [isVisible, setIsVisible] = useState(false);
+
+  const shortcuts = [
+    { icon: "N", description: "Add new todo" },
+    { icon: "D", description: "Toggle Done Panel" },
+    { icon: "A", description: "Toggle All Panel" },
+    { icon: "T", description: "Toggle To-do Panel" },
+  ];
+
   return (
-    <Wrapper>
+    <Container>
       <button
         onMouseEnter={() => setIsVisible(true)}
         onMouseLeave={() => setIsVisible(false)}
@@ -13,74 +21,81 @@ function Keyboard() {
         <MdKeyboard />
       </button>
       {isVisible ? (
-        <KeyboardContainer>
-          <Shortcut>
-            <h1>CTRL</h1>
-            <p>Add New To-do</p>
-          </Shortcut>
-          <Shortcut>
-            <h1>D</h1>
-            <p>Toggle Done Panel</p>
-          </Shortcut>
-          <Shortcut>
-            <h1>A</h1>
-            <p>Toggle All Panel</p>
-          </Shortcut>
-          <Shortcut>
-            <h1>T</h1>
-            <p>Toggle To-do Panel</p>
-          </Shortcut>
-        </KeyboardContainer>
+        <Box>
+          <ShortcutList>
+            {shortcuts.map((shortcut) => (
+              <Shortcut key={shortcut.icon}>
+                <Icon>{shortcut.icon}</Icon>
+                <Description>{shortcut.description}</Description>
+              </Shortcut>
+            ))}
+          </ShortcutList>
+        </Box>
       ) : null}
-    </Wrapper>
+    </Container>
   );
 }
 
 export default Keyboard;
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
+const Box = styled.div`
+  padding: 16px;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  background: white;
   position: absolute;
-  top: 30px;
-  right: 85px;
-
-  svg {
-    color: var(--gray200);
-    cursor: pointer;
-    position: fixed;
-    right: 50px;
-    top: 25px;
-    width: 30px;
-    height: 30px;
-  }
+  top: 20px;
+  left: -180px;
 `;
 
-const KeyboardContainer = styled.div`
-  background: #fff;
-  padding: 10px 20px 10px 10px;
-  border-radius: 3px;
+const Container = styled.div`
+  cursor: pointer;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+
+  svg {
+    fill: var(--gray200);
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+  }
 `;
 
 const Shortcut = styled.div`
   display: flex;
   align-items: center;
-  font-size: 12px;
+  margin-bottom: 15px;
+`;
+const ShortcutList = styled.div`
+  display: flex;
+  flex-direction: column;
+  > li:last-child {
+    margin-bottom: 0;
+  }
+`;
+const Icon = styled.div`
+  margin: 0px 0.8em 0 0;
+  padding: 0.1em 0.6em;
+  border-radius: 3px;
+  border: 1px solid rgb(204, 204, 204);
+  color: var(--white);
+  line-height: 1.4;
+  font-size: 16px;
 
-  h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--blue);
-    color: #fff;
-    font-size: 12px;
-    width: 35px;
-    height: 30px;
-    margin: 5px;
-    border-radius: 3px;
-  }
-  p {
-    color: var(--gray200);
-    font-weight: bold;
-  }
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2), inset 0px 0px 0px 2px #ffffff;
+  background-color: var(--blue);
+  text-shadow: 0 1px 0 #fff;
+`;
+
+const Description = styled.p`
+  font-size: 14px;
+  margin-bottom: 0;
+  color: var(--gray200);
 `;
