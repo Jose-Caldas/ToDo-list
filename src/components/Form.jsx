@@ -33,14 +33,11 @@ const FormContainer = styled.div`
     font-weight: bold;
     margin-right: 30px;
     position: relative;
+
     &:focus {
       color: var(--blue);
-
       box-shadow: 1px 1px 4px var(--gray200);
       border-radius: 3px;
-    }
-    .dourado {
-      background-color: blue;
     }
   }
 `;

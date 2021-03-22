@@ -1,6 +1,7 @@
 import React from "react";
 import { MdClose } from "react-icons/md";
 import { FiCalendar } from "react-icons/fi";
+import { FaCheck } from "react-icons/fa";
 import styled from "styled-components";
 
 function Todo({ text, todo, todos, setTodos }) {
@@ -29,7 +30,7 @@ function Todo({ text, todo, todos, setTodos }) {
           onClick={completeHadler}
           className={`complete-btn ${todo.Done ? "complete-btn" : "check"}`}
         >
-          {/* <FaCheck /> */}
+          <FaCheck />
         </button>
         <li>{text}</li>
       </div>
@@ -85,7 +86,7 @@ const TodoContainer = styled.div`
       align-items: center;
       justify-content: center;
       color: var(--red);
-      font-size: 15px;
+      font-size: 20px;
 
       cursor: pointer;
     }
@@ -100,16 +101,22 @@ const TodoContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--blue);
+    background: var(--white);
     color: white;
     border-radius: 5px;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
     font-size: 10px;
     margin-right: 20px;
     transition: 0.5s;
     padding-left: 3px;
+    border: 1px solid var(--gray200);
+
+    svg {
+      color: var(--blue);
+      font-size: 20px;
+    }
   }
 
   .complete-btn:hover {
@@ -121,6 +128,9 @@ const TodoContainer = styled.div`
   .check {
     background: var(--gray300);
     transition: 0.5s;
+    svg {
+      display: none;
+    }
   }
   @keyframes move {
     from {
