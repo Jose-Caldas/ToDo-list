@@ -26,6 +26,7 @@ const FormContainer = styled.div`
     display: flex;
     justify-content: center;
   }
+
   button {
     width: 10%;
     font-size: 18px;
