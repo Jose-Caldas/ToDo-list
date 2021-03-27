@@ -18,30 +18,18 @@ export default createGlobalStyle`
     margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 body{
     background-color: #f6f7fb;
   
 }
 
-body svg.keyboard {
-  color: var(--gray200);
-  cursor: pointer;
-  position: fixed;
-  right: 50px;
-  top: 25px;
-  width: 30px;
-  height: 30px;
-}
-
-
 ul,
 li {
   list-style: none;
 }
-input,
-button {
+input{
   outline: none;
 }
 

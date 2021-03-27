@@ -36,7 +36,7 @@ function Modal({ id = "close", inputText, setInputText, setTodos, todos }) {
                   value={inputText}
                   onChange={inputTextHandler}
                   type="text"
-                  name=""
+                  name="txt"
                   id=""
                 />
 

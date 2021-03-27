@@ -29,6 +29,11 @@ const UlContainer = styled.div`
   height: 300px;
   padding-left: 5px;
 
+  ::-webkit-scrollbar {
+    width: 15px;
+    height: 10px;
+  }
+
   ul {
     display: flex;
     flex-direction: column;
